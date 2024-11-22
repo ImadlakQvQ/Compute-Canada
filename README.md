@@ -7,28 +7,27 @@
 Set up multifactor authentication on the website at `My Account -> Multifactor Authentication Management`.
 
 ```shell
-ssh $USER@cedar.alliancecan.ca
+ssh $imadlak@cedar.alliancecan.ca								# able to connect the internet
 ssh $USER@graham.alliancecan.ca
 ssh $USER@narval.alliancecan.ca								# possible issue with wandb
 ```
 
 ## Create Virtual Environment
 
-Load `python/3.10` and `cuda/12.2` before creating the virtual environment.
+Load relavent modules
 
 ```shell
-module load python/3.10										# load python first
-module load cuda/12.2										# load cuda next
+module load StdEnv/2023  gcc/12.3 cuda/12.2 arrow/17.0 python/3.10.13
+
 virtualenv --no-download $ENV_NAME							# create virtual environment
+
 ```
 
 ## Activate Virtual Environment
 
-Load `python/3.10` and `cuda/12.2` before activating the virtual environment.
+Load modules before activating the virtual environment.
 
 ```shell
-module load python/3.10										# load python first
-module load cuda/12.2										# load cuda next
 source $ENV_NAME/bin/activate								# activate virtual environment
 ```
 
@@ -44,10 +43,10 @@ sinfo -eO "CPUs:8,Memory:9,Gres:80,NodeAI:14,NodeList:50"
 
 # apply for a cpu or gpu session
 salloc --gres=gpu:a100_3g.20gb:1 --cpus-per-task=2 --mem=40gb --time=1:0:0
-salloc --time=1:0:0 --cpus-per-task=1 --mem=64000M --account=def-cpsmcgil
-salloc --time=1:0:0 --gpus-per-node=1 --mem=64000M --account=def-cpsmcgil
-salloc --time=1:0:0 --gpus-per-node=p100:1 --mem=64000M --account=def-cpsmcgil
-exit
+# salloc --time=1:0:0 --cpus-per-task=1 --mem=64000M --account=def-cpsmcgil
+# salloc --time=1:0:0 --gpus-per-node=1 --mem=64000M --account=def-cpsmcgil
+# salloc --time=1:0:0 --gpus-per-node=p100:1 --mem=64000M --account=def-cpsmcgil
+# exit
 ```
 
 ## Submit to Server
