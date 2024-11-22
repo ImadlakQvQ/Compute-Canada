@@ -1,5 +1,5 @@
 # Compute Canada User Manual
-
+<https://prashp.gitlab.io/post/compute-canada-tut/#521-accessing-gpus>
 # Environment Setup
 
 ## Log In
