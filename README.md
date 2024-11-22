@@ -1,5 +1,8 @@
 # Compute Canada User Manual
+a guide line
 <https://prashp.gitlab.io/post/compute-canada-tut/#521-accessing-gpus>
+multi-gpu training
+<https://docs.alliancecan.ca/wiki/PyTorch>
 # Environment Setup
 
 ## Log In
