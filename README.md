@@ -43,7 +43,7 @@ Apply for a CPU or GPU session for interactive usage.
 sinfo -eO "CPUs:8,Memory:9,Gres:80,NodeAI:14,NodeList:50"
 
 # apply for a cpu or gpu session
-salloc --account=def-bboulet --gres=gpu:a100_3g.20gb:1 --cpus-per-task=2 --mem=40gb --time=1:0:0
+salloc --gres=gpu:a100_3g.20gb:1 --cpus-per-task=2 --mem=40gb --time=1:0:0
 salloc --time=1:0:0 --cpus-per-task=1 --mem=64000M --account=def-cpsmcgil
 salloc --time=1:0:0 --gpus-per-node=1 --mem=64000M --account=def-cpsmcgil
 salloc --time=1:0:0 --gpus-per-node=p100:1 --mem=64000M --account=def-cpsmcgil
