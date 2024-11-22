@@ -35,7 +35,7 @@ virtualenv --no-download $ENV_NAME							# create virtual environment
 Load modules before activating the virtual environment.
 
 ```shell
-source $ENV_NAME/bin/activate								# activate virtual environment
+source venv/bin/activate								# activate virtual environment
 ```
 
 # Running Jobs
