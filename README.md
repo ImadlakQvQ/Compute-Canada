@@ -7,9 +7,9 @@
 Set up multifactor authentication on the website at `My Account -> Multifactor Authentication Management`.
 
 ```shell
-ssh $imadlak@cedar.alliancecan.ca								# able to connect the internet
-ssh $USER@graham.alliancecan.ca
-ssh $USER@narval.alliancecan.ca								# possible issue with wandb
+ssh imadlak@cedar.alliancecan.ca								# able to connect the internet
+ssh imadlak@graham.alliancecan.ca
+ssh imadlak@narval.alliancecan.ca								# possible issue with wandb
 ```
 
 ## Create Virtual Environment
