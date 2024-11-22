@@ -58,33 +58,23 @@ salloc --gres=gpu:a100_3g.20gb:1 --cpus-per-task=2 --mem=40gb --time=1:0:0
 Where `nas_exp.sh` is the script to run the experiments, which should be something like the following:
 
 The lines starting with #SBATCH are used to set up the hardware resources.
+salloc --gres=gpu:a100_3g.20gb:1 --cpus-per-task=2 --mem=40gb --time=1:0:0
 
 ```sh
 #!/bin/bash
-#SBATCH --account=def-cpsmcgil
-#SBATCH --output=log/nas_exp.out
-#SBATCH --gres=gpu:v100l:1  # --gres=gpu:a100:1
-#SBATCH --time=20:20:00
-#SBATCH --cpus-per-task=4  # Cores proportional to GPUs: 6 on Cedar, 16 on Graham.
-#SBATCH --mem=32000M       # Memory proportional to GPUs: 32000 Cedar, 64000 Graham. #40000 Narval
+#SBATCH --account=def-bboulet
+#SBATCH --output=log/exp.out
+#SBATCH --gres=:a100_3g.20gb:1
+#SBATCH --time=1:0:0
+#SBATCH --cpus-per-task=2  # Cores proportional to GPUs: 6 on Cedar, 16 on Graham.
+#SBATCH --mem=40gb      # Memory proportional to GPUs: 32000 Cedar, 64000 Graham. #40000 Narval
 
-source /home/yeyuan66/nips2023c/bin/activate
-#module load python/3.7
-#module load cuda/10.2
-module load cuda
-#virtualenv --no-download $SLURM_TMPDIR/env
-#source $SLURM_TMPDIR/env/bin/activate
+source /home/<id>/<ENV>/bin/activate
+module load StdEnv/2023  gcc/12.3 cuda/12.2 arrow/17.0 rust/1.76.0 python/3.10.13
+virtualenv --no-download $SLURM_TMPDIR/env
+source $SLURM_TMPDIR/env/bin/activate
 
 nvidia-smi
-
-#conda activate local
-#conda install -n EXP40 pytorch torchvision torchaudio cudatoolkit=10.2 -c pytorch
-#conda install -c dglteam dgl-cuda10.2
-#python test_dgl.py
-echo "prt"
-#python -u grad.py --device 0
-#python -u grad.py --task DKittyMorphology-Exact-v0 --method triteach --N 20 --device 0
-#python -u test.py 
 
 tasks=('AntMorphology-Exact-v0' 'DKittyMorphology-Exact-v0' 'TFBind8-Exact-v0' 'TFBind10-Exact-v0')
 for seed in {1..20};
