@@ -73,24 +73,26 @@ salloc --gres=gpu:a100_3g.20gb:1 --cpus-per-task=2 --mem=40gb --time=1:0:0
 #SBATCH --output=log/exp.out
 #SBATCH --gres=:a100_3g.20gb:1
 #SBATCH --time=1:0:0
-#SBATCH --cpus-per-task=2  # Cores proportional to GPUs: 6 on Cedar, 16 on Graham.
-#SBATCH --mem=40gb      # Memory proportional to GPUs: 32000 Cedar, 64000 Graham. #40000 Narval
+#SBATCH --cpus-per-task=6  # Cores proportional to GPUs: 6 on Cedar, 16 on Graham.
+#SBATCH --mem=80gb      # Memory proportional to GPUs: 32000 Cedar, 64000 Graham. #40000 Narval
 
-source /home/<id>/<ENV>/bin/activate
-module load StdEnv/2023  gcc/12.3 cuda/12.2 arrow/17.0 rust/1.76.0 python/3.10.13
-virtualenv --no-download $SLURM_TMPDIR/env
-source $SLURM_TMPDIR/env/bin/activate
+
+module load StdEnv/2023  gcc/12.3 cuda/12.2 arrow/17.0 rust/1.70.0 python/3.10.13
+cd /project/def-bboulet/imadlak/program/VinePPO
+source venv/bin/activate
+# virtualenv --no-download $SLURM_TMPDIR/env
+# source $SLURM_TMPDIR/env/bin/activate
 
 nvidia-smi
-
-tasks=('AntMorphology-Exact-v0' 'DKittyMorphology-Exact-v0' 'TFBind8-Exact-v0' 'TFBind10-Exact-v0')
-for seed in {1..20};
-do
-	for task in ${tasks[*]};
-	do
-		python -u main.py
-	done
-done
+./test.sh
+#tasks=('AntMorphology-Exact-v0' 'DKittyMorphology-Exact-v0' 'TFBind8-Exact-v0' 'TFBind10-Exact-v0')
+#for seed in {1..20};
+#do
+#	for task in ${tasks[*]};
+#	do
+#		python -u main.py
+#	done
+#done
 
 deactivate
 ```
