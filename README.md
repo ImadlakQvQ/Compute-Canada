@@ -74,6 +74,7 @@ salloc --gres=gpu:a100_3g.20gb:1 --cpus-per-task=2 --mem=40gb --time=1:0:0
 #SBATCH --cpus-per-task=2         # CPU cores/threads
 #SBATCH --mem=4000M               # memory per node
 #SBATCH --time=0-03:00
+export WANDB_MODE=offline
 export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
 python program.py
 
