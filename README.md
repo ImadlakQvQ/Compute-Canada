@@ -64,21 +64,32 @@ salloc --account=def-bboulet --gres=gpu:a100_3g.20gb:1 --cpus-per-task=2 --mem=4
 
 Where `nas_exp.sh` is the script to run the experiments, which should be something like the following:
 
+```sh
+#!/bin/bash
+#SBATCH --account=def-bboulet     # set account
+#SBATCH --gpus-per-node=2         # Number of GPU(s) per node
+#SBATCH --cpus-per-task=2         # CPU cores/threads
+#SBATCH --mem=4000M               # memory per node
+#SBATCH --time=0-03:00            # set the time for tasks     3 days 2 hours 1 minute 0 second for --time==3-02:01:00
+
+module load StdEnv/2023  gcc/12.3 cuda/12.2 arrow/17.0 rust/1.70.0 python/3.10.13              # load the module
+cd /project/def-bboulet/imadlak/program/VinePPO                                                # set the path
+source venv/bin/activate                                                                       # activate the env
+
+export WANDB_MODE=offline         # set wandb to offline mode
+export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK     
+python program.py                 # run the tasks
+
+
+deactivate                        # deactivate the env
+```
+
+### Another Example
+
 The lines starting with #SBATCH are used to set up the hardware resources.
 salloc --gres=gpu:a100_3g.20gb:1 --cpus-per-task=2 --mem=40gb --time=1:0:0
 
 ```sh
-#!/bin/bash
-#SBATCH --account=def-bboulet
-#SBATCH --gpus-per-node=2         # Number of GPU(s) per node
-#SBATCH --cpus-per-task=2         # CPU cores/threads
-#SBATCH --mem=4000M               # memory per node
-#SBATCH --time=0-03:00
-export WANDB_MODE=offline
-export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
-python program.py
-
-
 #!/bin/bash
 #SBATCH --account=def-bboulet
 #SBATCH --output=log/exp.out
