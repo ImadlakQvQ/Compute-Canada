@@ -79,6 +79,7 @@ Where `nas_exp.sh` is the script to run the experiments, which should be somethi
 #!/bin/bash
 #SBATCH --account=def-bboulet     # set account
 #SBATCH --gpus-per-node=2         # Number of GPU(s) per node
+#SBATCH --output=log/exp.out      # log 保存地址
 #SBATCH --cpus-per-task=2         # CPU cores/threads
 #SBATCH --mem=4000M               # memory per node
 #SBATCH --time=0-03:00            # set the time for tasks     3 days 2 hours 1 minute 0 second for --time==3-02:01:00
