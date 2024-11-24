@@ -5,7 +5,16 @@
 
 ## multi-gpu training
 <https://docs.alliancecan.ca/wiki/PyTorch>
-
+## General slurm code
+```shell
+sbatch <xxxxx>.sh        # submit the tasks
+scancel <tasks_id>       # cancel a task
+sq                       # check the task state
+scancel -u <username>    # 取消所有该用户提交的task
+sstat -j <job_id>        # 查看该task所占用的资源
+srun --pty bash          # 以交互方式运行一个作业，用于测试和调试
+sacct                    # 查看已完成的作业
+```
 # Environment Setup
 
 ## Log In
