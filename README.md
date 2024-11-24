@@ -70,6 +70,16 @@ salloc --gres=gpu:a100_3g.20gb:1 --cpus-per-task=2 --mem=40gb --time=1:0:0
 ```sh
 #!/bin/bash
 #SBATCH --account=def-bboulet
+#SBATCH --gpus-per-node=2         # Number of GPU(s) per node
+#SBATCH --cpus-per-task=2         # CPU cores/threads
+#SBATCH --mem=4000M               # memory per node
+#SBATCH --time=0-03:00
+export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
+python program.py
+
+
+#!/bin/bash
+#SBATCH --account=def-bboulet
 #SBATCH --output=log/exp.out
 #SBATCH --gres=:a100_3g.20gb:1
 #SBATCH --time=1:0:0
