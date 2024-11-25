@@ -84,9 +84,9 @@ Where `nas_exp.sh` is the script to run the experiments, which should be somethi
 #SBATCH --mem=4000M               # memory per node
 #SBATCH --time=0-03:00            # set the time for tasks     3 days 2 hours 1 minute 0 second for --time==3-02:01:00
 
-module load StdEnv/2023  gcc/12.3 cuda/12.2 arrow/17.0 rust/1.70.0 python/3.10.13              # load the module
-cd /project/def-bboulet/imadlak/program/VinePPO                                                # set the path
-source venv/bin/activate                                                                       # activate the env
+module load StdEnv/2023  gcc/12.3 cuda/12.2 arrow/17.0 rust/1.70.0 python/3.10.13 git-lfs/3.4.0             # load the module
+cd /project/def-bboulet/imadlak/program/VinePPO                                                        # set the path
+source venv/bin/activate                                                                              # activate the env
 
 export WANDB_MODE=offline         # set wandb to offline mode
 export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK     
