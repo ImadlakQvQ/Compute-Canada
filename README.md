@@ -24,7 +24,7 @@ Load relavent modules
 
 ```shell
 # curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh				# install rustup
-module load StdEnv/2023  gcc/12.3 cuda/12.2 arrow/17.0 rust/1.70.0 python/3.10.13
+module load StdEnv/2023  gcc/12.3 cuda/12.2 arrow/17.0 rust/1.70.0 python/3.10.13 git-lfs/3.4.0
 
 virtualenv --no-download $ENV_NAME							# create virtual environment
 
@@ -35,7 +35,7 @@ virtualenv --no-download $ENV_NAME							# create virtual environment
 Load modules before activating the virtual environment.
 
 ```shell
-source venv/bin/activate								# activate virtual environment
+source $ENV_NAME/bin/activate								# activate virtual environment
 ```
 
 # Running Jobs
