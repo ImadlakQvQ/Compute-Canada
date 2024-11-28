@@ -49,7 +49,7 @@ Apply for a CPU or GPU session for interactive usage.
 sinfo -eO "CPUs:8,Memory:9,Gres:80,NodeAI:14,NodeList:50"
 
 # apply for a cpu or gpu session
-salloc --account=def-bboulet --gres=gpu:a100_3g.20gb:1 --cpus-per-task=2 --mem=40gb --time=1:0:0
+salloc --account=def-bboulet --gres=gpu:a100_3g.20gb:1 --cpus-per-task=2 --mem=40gb --time=1:0:0      # apply 1 gpu 2 cpus for 1 hour
 # salloc --time=1:0:0 --cpus-per-task=1 --mem=64000M --account=def-cpsmcgil
 # salloc --time=1:0:0 --gpus-per-node=1 --mem=64000M --account=def-cpsmcgil
 # salloc --time=1:0:0 --gpus-per-node=p100:1 --mem=64000M --account=def-cpsmcgil
@@ -82,7 +82,7 @@ Where `nas_exp.sh` is the script to run the experiments, which should be somethi
 #SBATCH --output=log/exp.out      # log 保存地址
 #SBATCH --cpus-per-task=2         # CPU cores/threads
 #SBATCH --mem=4000M               # memory per node
-#SBATCH --time=0-03:00            # set the time for tasks     3 days 2 hours 1 minute 0 second for --time==3-02:01:00
+#SBATCH --time=3-02:01            # set the time for tasks     3 days 2 hours 1 minute 0 second for --time==3-02:01:00
 
 module load StdEnv/2023  gcc/12.3 cuda/12.2 arrow/17.0 rust/1.70.0 python/3.10.13 git-lfs/3.4.0             # load the module
 cd /project/def-bboulet/imadlak/program/VinePPO                                                        # set the path
